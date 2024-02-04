@@ -9,12 +9,12 @@ class Program
             const int LOWER_GUESSBOUND = 0;
             const int UPPER_GUESSBOUND = 20;
             const int CLOSE_GUESS_THRESHOLD = 5;
-            const int UPPER_COUNTBOUND = 5;
+            const int MAX_NUM_OF_TRIES = 5;
             int count = 0;
             Random rng = new Random();
             int randomNumber = rng.Next(LOWER_GUESSBOUND, UPPER_GUESSBOUND);
             
-            while (count < UPPER_COUNTBOUND)
+            while (count < MAX_NUM_OF_TRIES)
             {
                 count++;
                 Console.WriteLine($"Guess a number between {LOWER_GUESSBOUND} and {UPPER_GUESSBOUND}");
@@ -23,29 +23,30 @@ class Program
                 if (LOWER_GUESSBOUND>userInput || UPPER_GUESSBOUND < userInput)
                 {
                     Console.WriteLine("Invalid Entry !");
+                    continue;
                 }
                 if (randomNumber == userInput)
                 {
                     Console.WriteLine("congrats! you win");
                     break;
                 }
-                if ((randomNumber + CLOSE_GUESS_THRESHOLD) <= userInput && LOWER_GUESSBOUND < userInput && UPPER_GUESSBOUND > userInput)
+                if ((randomNumber + CLOSE_GUESS_THRESHOLD) <= userInput)
                 {
                     Console.WriteLine("too high");
                 }
-                else if (randomNumber < userInput && LOWER_GUESSBOUND < userInput && UPPER_GUESSBOUND > userInput)
+                else if (randomNumber < userInput)
                 {
                     Console.WriteLine("High but close");
                 }
-                else if ((randomNumber - CLOSE_GUESS_THRESHOLD) >= userInput && LOWER_GUESSBOUND < userInput && UPPER_GUESSBOUND > userInput)
+                else if ((randomNumber - CLOSE_GUESS_THRESHOLD) >= userInput)
                 {
                     Console.WriteLine("too low");
                 }
-                else if(randomNumber > userInput && LOWER_GUESSBOUND < userInput && UPPER_GUESSBOUND > userInput)
+                else 
                 {
                     Console.WriteLine("low but close");
                 }
-                if (count == UPPER_COUNTBOUND && randomNumber != userInput)
+                if (count == MAX_NUM_OF_TRIES && randomNumber != userInput)
                 {
                     Console.WriteLine("Number of tries Exceeded. You Lose!");
                 }
