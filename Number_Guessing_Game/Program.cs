@@ -6,11 +6,15 @@ class Program
     {
         while (true)
         {
-            Random rng = new Random();
-            int randomNumber = rng.Next(0, 20);
+            const int LOWER_GUESSBOUND = 0;
+            const int UPPER_GUESSBOUND = 20;
+            const int CLOSE_GUESS_THRESHOLD = 5;
+            const int UPPER_COUNTBOUND = 5;
             int count = 0;
-
-            while (count < 5)
+            Random rng = new Random();
+            int randomNumber = rng.Next(LOWER_GUESSBOUND, UPPER_GUESSBOUND);
+            
+            while (count < UPPER_COUNTBOUND)
             {
                 count++;
                 Console.WriteLine("Guess a number between 0 and 20");
@@ -21,7 +25,7 @@ class Program
                     Console.WriteLine("congrats! you win");
                     break;
                 }
-                if ((randomNumber + 5) <= userInput)
+                if ((randomNumber + CLOSE_GUESS_THRESHOLD) <= userInput)
                 {
                     Console.WriteLine("too high");
                 }
@@ -29,7 +33,7 @@ class Program
                 {
                     Console.WriteLine("High but close");
                 }
-                else if ((randomNumber - 5) >= userInput)
+                else if ((randomNumber - CLOSE_GUESS_THRESHOLD) >= userInput)
                 {
                     Console.WriteLine("too low");
                 }
@@ -37,7 +41,7 @@ class Program
                 {
                     Console.WriteLine("low but close");
                 }
-                if (count == 5 && randomNumber != userInput)
+                if (count == UPPER_COUNTBOUND && randomNumber != userInput)
                 {
                     Console.WriteLine("Number of tries Exceeded. You Lose!");
                 }
