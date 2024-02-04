@@ -17,27 +17,31 @@ class Program
             while (count < UPPER_COUNTBOUND)
             {
                 count++;
-                Console.WriteLine("Guess a number between 0 and 20");
+                Console.WriteLine($"Guess a number between {LOWER_GUESSBOUND} and {UPPER_GUESSBOUND}");
                 int userInput = Convert.ToInt32(Console.ReadLine());
 
+                if (LOWER_GUESSBOUND>userInput || UPPER_GUESSBOUND < userInput)
+                {
+                    Console.WriteLine("Invalid Entry !");
+                }
                 if (randomNumber == userInput)
                 {
                     Console.WriteLine("congrats! you win");
                     break;
                 }
-                if ((randomNumber + CLOSE_GUESS_THRESHOLD) <= userInput)
+                if ((randomNumber + CLOSE_GUESS_THRESHOLD) <= userInput && LOWER_GUESSBOUND < userInput && UPPER_GUESSBOUND > userInput)
                 {
                     Console.WriteLine("too high");
                 }
-                else if (randomNumber < userInput)
+                else if (randomNumber < userInput && LOWER_GUESSBOUND < userInput && UPPER_GUESSBOUND > userInput)
                 {
                     Console.WriteLine("High but close");
                 }
-                else if ((randomNumber - CLOSE_GUESS_THRESHOLD) >= userInput)
+                else if ((randomNumber - CLOSE_GUESS_THRESHOLD) >= userInput && LOWER_GUESSBOUND < userInput && UPPER_GUESSBOUND > userInput)
                 {
                     Console.WriteLine("too low");
                 }
-                else
+                else if(randomNumber > userInput && LOWER_GUESSBOUND < userInput && UPPER_GUESSBOUND > userInput)
                 {
                     Console.WriteLine("low but close");
                 }
