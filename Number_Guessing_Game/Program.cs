@@ -33,20 +33,23 @@ class Program
                 if ((randomNumber + CLOSE_GUESS_THRESHOLD) <= userInput)
                 {
                     Console.WriteLine("too high");
+                    continue;
                 }
-                else if (randomNumber < userInput)
+                if (randomNumber < userInput)
                 {
                     Console.WriteLine("High but close");
+                    continue;
                 }
-                else if ((randomNumber - CLOSE_GUESS_THRESHOLD) >= userInput)
+                if ((randomNumber - CLOSE_GUESS_THRESHOLD) >= userInput)
                 {
                     Console.WriteLine("too low");
+                    continue;
                 }
                 else 
                 {
                     Console.WriteLine("low but close");
                 }
-                if (count == MAX_NUM_OF_TRIES && randomNumber != userInput)
+                if  (count == MAX_NUM_OF_TRIES && randomNumber != userInput)
                 {
                     Console.WriteLine("Number of tries Exceeded. You Lose!");
                 }
