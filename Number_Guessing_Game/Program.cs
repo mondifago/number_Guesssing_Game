@@ -18,9 +18,9 @@ class Program
             {
                 count++;
                 Console.WriteLine($"Guess a number between {LOWER_GUESSBOUND} and {UPPER_GUESSBOUND}");
-                int userInput = Convert.ToInt32(Console.ReadLine());
-
-                if (LOWER_GUESSBOUND>userInput || UPPER_GUESSBOUND < userInput)
+                string input = Console.ReadLine();
+                int userInput;
+                if (!int.TryParse(input, out userInput) || LOWER_GUESSBOUND>userInput || UPPER_GUESSBOUND < userInput || string.IsNullOrWhiteSpace(input))
                 {
                     Console.WriteLine("Invalid Entry !");
                     continue;
